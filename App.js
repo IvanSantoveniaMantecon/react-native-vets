@@ -24,12 +24,11 @@ return null;
 return (
 <>
 <ThemeProvider theme={theme}>
-<Navigator />
-<AuthenticationContextProvider>
-<Navigator />
-</AuthenticationContextProvider>
-
+  <AuthenticationContextProvider>
+    <Navigator />
+  </AuthenticationContextProvider>
 </ThemeProvider>
+
 <ExpoStatusBar style="auto" />
 </>
 );

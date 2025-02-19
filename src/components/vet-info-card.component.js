@@ -3,6 +3,8 @@ import close from "../../assets/close";
 import open from "../../assets/open";
 import star from "../../assets/star";
 import { Text } from "../theme/Typography";
+
+import { FavouriteComponent } from "./favourite.component";
 import {
 VetCard,
 VetCardCover,
@@ -17,6 +19,7 @@ export const VetInfoCardComponent = ({ vet }) => {
 const ratingArray = Array.from(new Array(Math.floor(vet.rating)));
 return (
 <VetCard elevation={5}>
+<FavouriteComponent vet={vet} />
 <VetCardCover key={vet.name} source={{ uri: vet.photo }} />
 <Info>
 <Text variant="label">{vet.name}</Text>

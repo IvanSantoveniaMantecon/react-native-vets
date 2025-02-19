@@ -5,6 +5,8 @@ import { SettingsNavigator } from "./Settings.navigator";
 import { VetsNavigator } from "./Vets.navigator";
 import { LocationsContextProvider } from "../services/location.context";
 import { VetsContextProvider } from "../services/vets.context";
+import { FavouritesContextProvider } from "../data/favourites.context";
+
 
 const Tab = createBottomTabNavigator();
 const TAB_ICON = {
@@ -30,6 +32,7 @@ const screenOptions = ({ route }) => {
     }
     };
     export const AppNavigator = () => (
+        <FavouritesContextProvider>
         <LocationsContextProvider>
 <VetsContextProvider>
 
@@ -39,5 +42,7 @@ const screenOptions = ({ route }) => {
     <Tab.Screen name="Settings" component={SettingsNavigator} />
     </Tab.Navigator>
     </VetsContextProvider>
-</LocationsContextProvider>
+    </LocationsContextProvider>
+</FavouritesContextProvider>
+
     );
