@@ -1,30 +1,35 @@
+// Simulación de una base de datos en memoria
+const usersDB = {};
+
 export const loginRequest = (email, password) => {
-    return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-    if (email === "a" && password === "a") {
-    resolve({
-    uid: 1,
-    email: "user1@email.com",
-    });
-    } else if (email === "b" && password === "b") {
-    resolve({
-        uid: 2,
-email: "user2@email.com",
-});
-} else {
-reject("Wrong email and/or password");
-}
-}, 1000);
-});
+      if (usersDB[email] && usersDB[email].password === password) {
+        resolve({
+          uid: usersDB[email].uid,
+          email: email,
+        });
+      } else {
+        reject("Wrong email and/or password");
+      }
+    }, 1000);
+  });
 };
+
 export const createUserRequest = (email, password) => {
-return new Promise(function (resolve, reject) {
-setTimeout(() => {
-if (email === "b" && password === "b") {
-resolve("User created!");
-} else {
-reject("Email already registered");
-}
-}, 1000);
-});
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (usersDB[email]) {
+        reject("Email already registered");
+      } else {
+        const newUser = {
+          uid: Object.keys(usersDB).length + 1,
+          email: email,
+          password: password, // ⚠️ No recomendado en producción (usar hash)
+        };
+        usersDB[email] = newUser;
+        resolve(newUser);
+      }
+    }, 1000);
+  });
 };
