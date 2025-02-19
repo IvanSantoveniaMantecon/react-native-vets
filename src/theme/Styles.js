@@ -1,10 +1,12 @@
-import { ActivityIndicator, Button } from "react-native-paper";
+import { ActivityIndicator, Avatar, Button, List } from "react-native-paper";
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
 import { colors } from "./Colors";
 import { sizes } from "./Sizes";
 import { TouchableOpacity } from "react-native";
 import { WebView } from "react-native-webview";
+import MapView from "react-native-maps";
+import { CameraView } from "expo-camera";
 
 export const Address = styled.Text`
 font-family: ${(props) => props.theme.fonts.body};
@@ -13,11 +15,42 @@ font-size: ${(props) => props.theme.fontSizes.caption};
 export const Details = styled.View`
 flex-direction: row;
 `;
+export const CameraViewer = styled(CameraView)`
+flex: 1;
+`;
+export const CameraContainer = styled(TouchableOpacity)`
+flex: 1;
+`;
+export const NoFavouritesYet = styled.View`
+align-items: center;
+justify-content: center;
+`;
+
+export const AvatarContainer = styled.View`
+align-items: center;
+padding: ${(props) => props.theme.space[3]};
+`;
+export const AvatarIcon = styled(Avatar.Icon).attrs({
+size: 180,
+backgroundColor: colors.button,
+})``;
+export const AvatarImage = styled(Avatar.Image).attrs({
+size: 180,
+})``;
+export const SettingsItem = styled(List.Item)`
+padding: ${(props) => props.theme.space[3]};
+`;
+
 export const ButtonsSpace = styled.View`
 justify-content: center;
 flex-direction: row;
 padding: ${(props) => props.theme.space[1]};
 `;
+export const Map = styled(MapView)`
+height: 100%;
+width: 100%;
+`;
+
 export const ContactButton = styled(Button).attrs({
 buttonColor: colors.button,
 textColor: colors.textButton,
